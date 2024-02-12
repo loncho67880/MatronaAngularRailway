@@ -1,0 +1,104 @@
+<app-header-auth></app-header-auth>
+
+<section>
+  <!-- * Bloque Formulario login -->
+
+  <div class="Login-container">
+    <div class="login-container_info m-5">
+      <h3 class="text-center">Bienvenido</h3>
+      <!-- * Formulario -->
+      <form [formGroup]="formLogin" autocomplete="off">
+        <!-- * EMAIL -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-envelope"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              placeholder="Correo Electronico"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm('email')) {
+            <p class="text_error">
+              <span>*</span> El email ingresado no corresponde a un email valido
+            </p>
+            }
+          </div>
+        </div>
+
+        <!-- * EMAIL -->
+
+        <!-- * PASSWORD  -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-lock"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Ingresar Contraseña"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm('password')) {
+            <p class="text_error"><span>*</span> El password es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * PASSWORD  -->
+
+        <!-- * Boton Login -->
+        <div class="d-grid gap-2 mt-4">
+          <button
+            type="submit"
+            class="login_button"
+            (click)="login()"
+            [disabled]="this.formLogin.invalid"
+          >
+            Login
+            <span class="ms-2"
+              ><i
+                class="fa-solid fa-forward"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+          </button>
+        </div>
+        <!-- * Boton Login -->
+      </form>
+      <!-- * Formulario -->
+
+      <!-- * Redireccion Registro-->
+      <div class="text-center m-4">
+        <p class="text_register">
+          ¿No tienes una cuenta?
+          <span
+            class="register"
+            style="color: var(--color-secundario)"
+            routerLink="/register"
+            >Regístrate aquí.</span
+          >
+        </p>
+      </div>
+      <!-- * Redireccion Registro-->
+
+      <hr />
+    </div>
+  </div>
+
+  <!-- * Formulario login -->
+</section>

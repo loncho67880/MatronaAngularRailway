@@ -1,0 +1,230 @@
+<app-header-auth></app-header-auth>
+
+<section>
+  <!-- * Bloque Formulario login -->
+
+  <div class="Login-container">
+    <div class="login-container_info m-5">
+      <h3 class="text-center">Registro de usuario</h3>
+      <!-- * Formulario -->
+      <form [formGroup]="this.formRegister">
+        <!-- * EMAIL -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-envelope"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              placeholder="Correo Electronico"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("email")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * EMAIL -->
+
+        <!-- * NAME -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-signature"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control"
+              placeholder="Ingresar Nombre"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("name")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * NAME -->
+
+        <!-- * LASTNAME -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-signature"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="text"
+              id="lastName"
+              formControlName="lastName"
+              class="form-control"
+              placeholder="Ingresar Apellido"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("lastName")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * LASTNAME -->
+
+        <!-- * USERNAME -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-image-portrait"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="text"
+              id="userName"
+              formControlName="userName"
+              class="form-control"
+              placeholder="Ingresar Nombre Corto"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("userName")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * USERNAME -->
+
+        <!-- * DOCUMENT -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-passport"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="number"
+              id="document"
+              formControlName="document"
+              class="form-control"
+              placeholder="Ingresar Identificacion"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("document")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * DOCUMENT -->
+
+        <!-- * PASSWORD  -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-lock"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Ingresar Contraseña"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("password")) {
+            <p class="text_error">
+              <span>*</span> El password es requerida y minimo 8 caracteres
+            </p>
+            }
+          </div>
+        </div>
+        <!-- * PASSWORD  -->
+
+        <!-- * CONFIRM  -->
+        <div class="col mt-3">
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-check-double"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="password"
+              id="confirm"
+              formControlName="confirm"
+              class="form-control"
+              placeholder="Confirmar Contraseña"
+            />
+          </div>
+          <div>
+            @if (this.contrasenasNoValidas()) {
+            <p class="text_error">
+              <span>*</span> Las contraseñas suministradas no son iguales.
+            </p>
+            }
+          </div>
+        </div>
+        <!-- * CONFIRM  -->
+
+        <!-- * Boton Registro -->
+        <div class="d-grid gap-2 mt-4">
+          <button
+            type="submit"
+            class="registro_button"
+            (click)="register()"
+            [disabled]="this.formRegister.invalid"
+          >
+            Registrar
+            <span class="ms-2"
+              ><i
+                class="fa-solid fa-forward"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+          </button>
+        </div>
+        <!-- * Boton registro -->
+      </form>
+      <!-- * Formulario -->
+
+      <!-- * Redireccion Registro-->
+      <div class="text-center m-4">
+        <p class="text_register">
+          ¿Ya tienes una cuenta?
+          <span
+            class="register"
+            style="color: var(--color-secundario)"
+            routerLink="/auth"
+            >Login aquí.</span
+          >
+        </p>
+      </div>
+      <!-- * Redireccion Registro-->
+
+      <hr />
+    </div>
+  </div>
+
+  <!-- * Formulario login -->
+</section>

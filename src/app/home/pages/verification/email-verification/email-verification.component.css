@@ -1,0 +1,22 @@
+.lottie {
+  height: 300px;
+}
+
+h2,
+p {
+  color: var(--color-secundario);
+}
+
+.iniciar {
+  border: none;
+  color: var(--color-principal);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0 0 0;
+  background-color: var(--color-secundario);
+  box-shadow: 1px 1px 5px var(--color-secundario);
+}
+
+.iniciar:hover {
+  box-shadow: 1px 1px 5px white;
+}

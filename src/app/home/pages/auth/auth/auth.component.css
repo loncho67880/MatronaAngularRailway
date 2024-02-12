@@ -1,0 +1,83 @@
+.Login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.center {
+  height: 100%;
+}
+
+h3 {
+  z-index: 999999;
+  color: var(--color-secundario);
+}
+
+.login-container_info {
+  top: 400px;
+  z-index: 999999;
+  position: absolute;
+}
+
+.register {
+  cursor: pointer;
+}
+
+.login_button {
+  border: none;
+  color: var(--color-principal);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 20px;
+  z-index: 999999;
+  background-color: var(--color-secundario);
+}
+.login_button:hover {
+  box-shadow: 1px 1px 4px white;
+}
+
+::placeholder {
+  color: var(--color-secundario);
+}
+
+.icon {
+  background-color: rgba(225, 225, 225, 0.5);
+  border: none;
+}
+
+input {
+  width: 100%;
+  color: #ffffff;
+  border: 2px solid rgba(147, 127, 116, 0.3);
+  background-color: rgba(147, 127, 116, 0.3);
+  transition: 0.1s ease;
+  z-index: 111111;
+}
+
+.text_error {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-secundario);
+}
+.text_error span {
+  color: #937f74;
+}
+
+.text_register {
+  color: black;
+}
+
+input[type="email"]:focus {
+  border-color: #8e4e39;
+  outline: 2px solid var(--color-principal);
+  background-color: var(--color-principal);
+  box-shadow: 0 0 5px #8e4e39;
+}
+
+input[type="password"]:focus {
+  border-color: #8e4e39;
+  outline: 2px solid var(--color-principal);
+  background-color: var(--color-principal);
+  box-shadow: 0 0 5px #8e4e39;
+}

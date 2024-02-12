@@ -1,0 +1,25 @@
+.fontImage img {
+  margin-top: 20px;
+  width: 200px;
+  height: 100px;
+}
+
+.fontImage {
+  width: 100%;
+  height: 520px;
+  background-image: url("../../../../../assets/image/Fotografía_1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backface-visibility: visible;
+  z-index: 0;
+}
+
+.backgroup {
+  position: relative;
+}
+.ola {
+  position: absolute;
+  width: 100%;
+  top: 370px;
+}

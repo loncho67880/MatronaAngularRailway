@@ -1,0 +1,44 @@
+<app-header-auth></app-header-auth>
+@if (verified()) {
+<section class="container text-center">
+  <!-- * Informacion de la verificacion -->
+  <div>
+    <h2>Correo Verificado</h2>
+    <p>
+      Gracias por verificar el correo ya puedes realizar tu primer Inicio de
+      sesión
+    </p>
+    <button routerLink="/auth" class="iniciar">Iniciar Sesión</button>
+  </div>
+
+  <!-- * Lottie -->
+  <div class="lottie">
+    <ng-lottie
+      [options]="options"
+      (animationCreated)="animationCreated($event)"
+    ></ng-lottie>
+  </div>
+
+  <!-- * Lottie -->
+</section>
+}@else {
+<section class="container text-center">
+  <!-- * Informacion de la verificacion Fallida -->
+  <div>
+    <h2>Correo No Verificado</h2>
+    <p>
+      Por favor gestionar el correo que fue enviado a la cuenta del
+      administrador; En caso contrario crea una cuenta.
+    </p>
+    <button routerLink="/register" class="iniciar">Registrate</button>
+  </div>
+
+  <!-- * Lottie -->
+  <div class="lottie">
+    <ng-lottie
+      [options]="options"
+      (animationCreated)="animationCreated($event)"
+    ></ng-lottie>
+  </div>
+</section>
+}
