@@ -1,9 +1,12 @@
+@import "primeng/resources/primeng.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+
 /** GENERALES */
-:root{
+:root {
   --color-principal: #ad5d42;
   --color-secundario: #dac09d;
-  --color-alternativo: #FF6537;
-  --gris-default: #6C757D;
+  --color-alternativo: #ff6537;
+  --gris-default: #6c757d;
 }
 
 html,

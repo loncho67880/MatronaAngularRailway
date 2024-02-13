@@ -7,15 +7,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Observer } from 'rxjs';
+import { DialogModule } from 'primeng/dialog';
 
 import { AuthService } from '../../../services';
 import { RegisterModel } from '../../../../domain/models/models';
 import { User } from '../../../../domain/interfaces/auth.interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HeaderAuthComponent } from '../../../shared/components/header-auth/header-auth.component';
-import { ModalRegisterComponent } from '../../../shared/components/modal-register/modal-register.component';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +24,7 @@ import { ModalRegisterComponent } from '../../../shared/components/modal-registe
     RouterModule,
     HeaderAuthComponent,
     ReactiveFormsModule,
+    DialogModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
@@ -45,16 +45,15 @@ export default class RegisterComponent {
 
   public authService = inject(AuthService);
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
+  constructor(private fb: FormBuilder) {}
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ModalRegisterComponent);
-  }
+  visible: boolean = false;
 
   // * Observer de la respuesta de la suscripcion
   public observer: Observer<User> = {
     next: (value: User) => {
       this.formRegister.reset();
+      this.showDialog();
     },
     error: (err: HttpErrorResponse) => {
       // TODO: Ajustar para mostrar el modal
@@ -105,5 +104,13 @@ export default class RegisterComponent {
     this.authService.getToken().subscribe(({ token }) => {
       this.authService.register(data, token).subscribe(this.observer);
     });
+  }
+
+  showDialog() {
+    if (this.visible) {
+      this.visible = false;
+    } else {
+      this.visible = true;
+    }
   }
 }

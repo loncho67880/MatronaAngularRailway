@@ -189,7 +189,7 @@
 
         <!-- * Boton Registro -->
         <div class="d-grid gap-2 mt-4">
-          <button (click)="openDialog()">Open dialog</button>
+          <!-- <button (click)="openDialog()">Open dialog</button> -->
           <button
             type="submit"
             class="registro_button"
@@ -228,4 +228,20 @@
   </div>
 
   <!-- * Formulario login -->
+
+  <div class="flex justify-content-center">
+    <p-dialog
+      header="Header"
+      [visible]="visible"
+      [style]="{ width: '50vw', color: '#8e4e39' }"
+      [modal]="true"
+      [dismissableMask]="true"
+    >
+      <p>
+        Usuario registrado correctamente, se ha enviado un correo para gestion
+        del administrador validar el registro. Gracias por su espera.
+      </p>
+      <button (click)="showDialog()">cerrar</button>
+    </p-dialog>
+  </div>
 </section>
