@@ -70,7 +70,7 @@
             <input
               type="text"
               id="lastName"
-              formControlName="lastName"
+              formControlName="lastname"
               class="form-control"
               placeholder="Ingresar Apellido"
             />
@@ -120,7 +120,7 @@
             <input
               type="number"
               id="document"
-              formControlName="document"
+              formControlName="identification"
               class="form-control"
               placeholder="Ingresar Identificacion"
             />
@@ -189,6 +189,7 @@
 
         <!-- * Boton Registro -->
         <div class="d-grid gap-2 mt-4">
+          <button (click)="openDialog()">Open dialog</button>
           <button
             type="submit"
             class="registro_button"

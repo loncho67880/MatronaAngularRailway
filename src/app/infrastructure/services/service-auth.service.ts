@@ -1,13 +1,17 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthRepository } from '../../domain/respository/repository';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Login,
   TokeRespose,
   User,
 } from '../../domain/interfaces/auth.interfaces';
-import { TokenModel, UserModel } from '../../domain/models/models';
+import {
+  RegisterModel,
+  TokenModel,
+  UserModel,
+} from '../../domain/models/models';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable({
@@ -22,9 +26,36 @@ export class InfraAuthService implements AuthRepository {
     environment.passwordTokenPailway
   );
 
-  register(): Observable<User> {
+  get getTokenLocal(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  httpHeaders(token: string) {
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  }
+
+  register(data: RegisterModel, token: string): Observable<User> {
     console.log('Register del usuario');
-    return this.http.post<User>(`${this.baseUrl}/api/User/CreateUser`, {});
+    const headers = this.httpHeaders(token);
+    console.log(data);
+    const dataRegister: RegisterModel = new RegisterModel(
+      0,
+      data.name,
+      data.lastname,
+      data.userName,
+      data.identification.toString(),
+      data.password,
+      data.email
+    );
+    return this.http.post<User>(
+      `${this.baseUrl}/api/User/CreateUser`,
+      dataRegister,
+      {
+        headers,
+      }
+    );
   }
   login(data: UserModel): Observable<Login> {
     return this.http.post<Login>(`${this.baseUrl}/api/User/LoginUser`, data);

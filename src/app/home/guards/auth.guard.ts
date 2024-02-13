@@ -4,6 +4,6 @@ import { AuthService } from '../services';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
-  authService.getToke();
+  authService.getToken();
   return authService.logged();
 };

@@ -1,14 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HeaderAuthComponent } from '../../../shared/components/header-auth/header-auth.component';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Observer } from 'rxjs';
+
 import { AuthService } from '../../../services';
+import { RegisterModel } from '../../../../domain/models/models';
+import { User } from '../../../../domain/interfaces/auth.interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
+import { HeaderAuthComponent } from '../../../shared/components/header-auth/header-auth.component';
+import { ModalRegisterComponent } from '../../../shared/components/modal-register/modal-register.component';
 
 @Component({
   selector: 'app-register',
@@ -27,9 +34,9 @@ export default class RegisterComponent {
     {
       email: ['', [Validators.email, Validators.required]],
       name: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
       userName: ['', [Validators.required]],
-      document: ['', [Validators.required]],
+      identification: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirm: ['', [Validators.required, Validators.minLength(8)]],
     },
@@ -38,7 +45,24 @@ export default class RegisterComponent {
 
   public authService = inject(AuthService);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalRegisterComponent);
+  }
+
+  // * Observer de la respuesta de la suscripcion
+  public observer: Observer<User> = {
+    next: (value: User) => {
+      this.formRegister.reset();
+    },
+    error: (err: HttpErrorResponse) => {
+      // TODO: Ajustar para mostrar el modal
+      console.log('Error de peticion', err);
+    },
+    complete: function (): void {},
+  };
+  // * Observer de la respuesta de la suscripcion
 
   validParamForm(param: string): boolean {
     if (
@@ -76,6 +100,10 @@ export default class RegisterComponent {
   }
 
   register() {
-    this.authService.register();
+    console.log(this.formRegister.value);
+    const data: RegisterModel = this.formRegister.value;
+    this.authService.getToken().subscribe(({ token }) => {
+      this.authService.register(data, token).subscribe(this.observer);
+    });
   }
 }

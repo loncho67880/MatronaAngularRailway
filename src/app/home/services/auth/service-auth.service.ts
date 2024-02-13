@@ -4,8 +4,12 @@ import {
   AuthRepositoryInject,
 } from '../../../domain/respository/repository';
 import { Observable, map, tap } from 'rxjs';
-import { Login, User } from '../../../domain/interfaces/auth.interfaces';
-import { UserModel } from '../../../domain/models/models';
+import {
+  Login,
+  TokeRespose,
+  User,
+} from '../../../domain/interfaces/auth.interfaces';
+import { RegisterModel, UserModel } from '../../../domain/models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -37,13 +41,12 @@ export class AuthService {
     );
   }
 
-  register(): Observable<User> {
+  register(data: RegisterModel, token: string): Observable<User> {
     console.log('registro');
-    this.getToke();
-    return this.authRepository.register();
+    return this.authRepository.register(data, token);
   }
 
-  getToke() {
-    return this.authRepository.getToken().subscribe(console.log);
+  getToken(): Observable<TokeRespose> {
+    return this.authRepository.getToken();
   }
 }
