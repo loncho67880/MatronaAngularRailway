@@ -189,12 +189,11 @@
 
         <!-- * Boton Registro -->
         <div class="d-grid gap-2 mt-4">
-          <!-- <button (click)="openDialog()">Open dialog</button> -->
           <button
             type="submit"
+            [disabled]="this.formRegister.invalid"
             class="registro_button"
             (click)="register()"
-            [disabled]="this.formRegister.invalid"
           >
             Registrar
             <span class="ms-2"
@@ -229,19 +228,24 @@
 
   <!-- * Formulario login -->
 
+  <!-- * Modal de registro de usuario  -->
   <div class="flex justify-content-center">
     <p-dialog
-      header="Header"
-      [visible]="visible"
-      [style]="{ width: '50vw', color: '#8e4e39' }"
+      header="Registro de Usuario Exitoso"
+      [(visible)]="visible"
       [modal]="true"
-      [dismissableMask]="true"
+      [draggable]="false"
+      [style]="{ width: '50vw' }"
     >
+      <hr />
       <p>
         Usuario registrado correctamente, se ha enviado un correo para gestion
-        del administrador validar el registro. Gracias por su espera.
+        del administrador para validar tu registro.
       </p>
-      <button (click)="showDialog()">cerrar</button>
+      <p>Gracias por tu registro.</p>
+      <hr />
+      <button routerLink="/auth" class="register registro_button">login</button>
     </p-dialog>
   </div>
+  <!-- * Modal de registro de usuario  -->
 </section>

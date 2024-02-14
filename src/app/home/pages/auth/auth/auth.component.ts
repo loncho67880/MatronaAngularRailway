@@ -39,7 +39,7 @@ export default class AuthComponent {
   public observer: Observer<User> = {
     next: (value: User) => {
       console.log(value);
-      this.router.navigateByUrl('/dashboard/reservas');
+      this.router.navigateByUrl('/dashboard/bookings');
     },
     error: (err: HttpErrorResponse) => {
       // TODO: Ajustar para mostrar el modal

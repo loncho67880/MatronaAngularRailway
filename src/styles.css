@@ -73,3 +73,14 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
+.p-dialog-content {
+  background: var(--color-principal) !important;
+  color: var(--color-secundario);
+}
+
+.p-dialog-header {
+  padding: 16px 16px !important;
+  background: var(--color-principal) !important;
+  color: var(--color-secundario);
+}

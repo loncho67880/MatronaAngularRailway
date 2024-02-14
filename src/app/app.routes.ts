@@ -7,18 +7,24 @@ export const routes: Routes = [
     loadComponent: () => import('./home/pages/views/dashboard.component'),
     children: [
       {
-        path: 'reservas',
-        title: 'Reservas',
+        path: 'bookings',
+        title: 'Bookings',
+        loadComponent: () =>
+          import('./home/pages/views/pages/bookings/bookings.component'),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'reserva',
+        title: 'Reserva',
         loadComponent: () =>
           import('./home/pages/views/pages/reserve/reserve.component'),
       },
       {
         path: '**',
-        redirectTo: 'reservas',
+        redirectTo: 'reserva',
         pathMatch: 'full',
       },
     ],
-    canActivate: [authGuard],
   },
   {
     path: 'auth',

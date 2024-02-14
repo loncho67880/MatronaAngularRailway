@@ -28,7 +28,6 @@ h3 {
   border-radius: 8px;
   padding: 8px;
   font-size: 20px;
-  z-index: 999999;
   background-color: var(--color-secundario);
   cursor: pointer;
 }

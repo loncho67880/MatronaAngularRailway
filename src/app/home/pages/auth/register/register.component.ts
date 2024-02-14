@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -44,6 +44,7 @@ export default class RegisterComponent {
   );
 
   public authService = inject(AuthService);
+  public router = inject(Router);
 
   constructor(private fb: FormBuilder) {}
 
