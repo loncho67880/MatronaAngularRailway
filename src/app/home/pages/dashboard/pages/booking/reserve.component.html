@@ -1,0 +1,95 @@
+<!-- * Backgrounds -->
+<section class="Backgrounds">
+  <div>
+    <img src="../../../../../../assets/image/Fotografía_2.png" alt="platos" />
+  </div>
+  <h2 class="m-3 text-center">Reservaciones</h2>
+</section>
+<!-- * Backgrounds -->
+
+<!-- * Formulario de reserva -->
+<section
+  class="d-flex justify-content-center mt-5 pb-5 flex-column container_formulario"
+>
+  <form>
+    <div class="row">
+      <!-- * Calendario de fecha de reserva -->
+      <div class="d-flex flex-column col mb-3">
+        <label for="">Fecha de la reserva</label>
+        <hr />
+        <p-calendar
+          class="max-w-full"
+          [inline]="true"
+          [showWeek]="true"
+        ></p-calendar>
+      </div>
+      <!-- * Calendario de fecha de reserva -->
+      <div class="col">
+        <!-- * Nombre de la persona  -->
+        <div class="d-flex flex-column mb-3">
+          <label for="name">Nombre</label>
+          <hr />
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-signature"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input type="text" id="name" class="form-control" />
+          </div>
+        </div>
+        <!-- * Nombre de la persona  -->
+
+        <!-- * Documento de la persona -->
+        <div class="d-flex flex-column mb-3">
+          <label for="document">Numero de identificacion</label>
+          <hr />
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-id-card"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input type="text" id="document" class="form-control" />
+          </div>
+        </div>
+        <!-- * Documento de la persona -->
+
+        <!-- * Email de la persona -->
+        <div class="d-flex flex-column mb-3">
+          <label for="email">Email</label>
+          <hr />
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-check-double"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input type="email" id="email" class="form-control" />
+          </div>
+        </div>
+        <!-- * Email de la persona -->
+
+        <!-- * Telefono de la persona -->
+        <div class="d-flex flex-column mb-3">
+          <label for="phone">Telefono</label>
+          <hr />
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-phone"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input type="tel" id="phone" class="form-control" />
+          </div>
+        </div>
+        <!-- * Telefono de la persona -->
+      </div>
+    </div>
+  </form>
+</section>
+<!-- * Formulario de reserva -->

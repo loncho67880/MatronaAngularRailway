@@ -6,8 +6,14 @@ import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AuthRepositoryInject } from './domain/respository/repository';
-import { InfraAuthService } from './infrastructure/services/services';
+import {
+  AuthRepositoryInject,
+  ReserveRepositoryInject,
+} from './domain/respository/repository';
+import {
+  InfraAuthService,
+  InfraReserveService,
+} from './infrastructure/services/services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +23,6 @@ export const appConfig: ApplicationConfig = {
       player: () => import('lottie-web'),
     }),
     { provide: AuthRepositoryInject, useClass: InfraAuthService },
+    { provide: ReserveRepositoryInject, useClass: InfraReserveService },
   ],
 };

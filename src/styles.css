@@ -84,3 +84,15 @@ html {
   background: var(--color-principal) !important;
   color: var(--color-secundario);
 }
+
+.p-datepicker {
+  border: var(--color-secundario);
+  margin: 0;
+  background: var(--color-secundario) !important;
+}
+
+.p-datepicker-header {
+  background: var(--color-principal) !important;
+  border: var(--color-secundario);
+  color: var(--color-secundario) !important;
+}
