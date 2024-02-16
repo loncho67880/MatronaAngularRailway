@@ -4,24 +4,24 @@ import { authGuard } from './home/guards/auth.guard';
 export const routes: Routes = [
   {
     path: 'dashboard',
-    loadComponent: () => import('./home/pages/views/dashboard.component'),
+    loadComponent: () => import('./home/pages/dashboard/dashboard.component'),
     children: [
       {
         path: 'bookings',
         title: 'Bookings',
         loadComponent: () =>
-          import('./home/pages/views/pages/bookings/bookings.component'),
+          import('./home/pages/dashboard/pages/bookings/bookings.component'),
         canActivate: [authGuard],
       },
       {
-        path: 'reserva',
-        title: 'Reserva',
+        path: 'booking',
+        title: 'Booking',
         loadComponent: () =>
-          import('./home/pages/views/pages/reserve/reserve.component'),
+          import('./home/pages/dashboard/pages/booking/reserve.component'),
       },
       {
         path: '**',
-        redirectTo: 'reserva',
+        redirectTo: 'booking',
         pathMatch: 'full',
       },
     ],

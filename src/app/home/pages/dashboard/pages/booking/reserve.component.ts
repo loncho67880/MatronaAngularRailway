@@ -1,11 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ReserveService } from '../../../../services';
+import { CalendarModule } from 'primeng/calendar';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-reserve',
   standalone: true,
-  imports: [],
+  imports: [CalendarModule, CommonModule, RouterModule],
   templateUrl: './reserve.component.html',
   styleUrl: './reserve.component.css',
 })

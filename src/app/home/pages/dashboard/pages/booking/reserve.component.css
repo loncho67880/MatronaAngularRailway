@@ -1,0 +1,44 @@
+.Backgrounds img {
+  width: 100%;
+  margin: 0;
+}
+
+@media screen and (min-width: 600px) {
+  .Backgrounds img {
+    height: 400px;
+  }
+}
+
+input:focus {
+  border-color: #8e4e39;
+  outline: 2px solid var(--color-principal);
+  background-color: var(--color-principal);
+  box-shadow: 0 0 5px #8e4e39;
+}
+
+input {
+  width: 100%;
+  color: #ffffff;
+  border: 2px solid rgba(147, 127, 116, 0.3);
+  background-color: rgba(147, 127, 116, 0.3);
+  transition: 0.1s ease;
+}
+
+.icon {
+  background-color: rgba(225, 225, 225, 0.5);
+  border: none;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+section {
+  color: var(--color-secundario);
+}
+
+.container_formulario {
+  background-color: #fcfcfd;
+  margin: auto;
+  padding: 100px;
+  color: var(--color-principal);
+}

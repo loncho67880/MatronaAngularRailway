@@ -76,10 +76,3 @@ input:focus {
   background-color: var(--color-principal);
   box-shadow: 0 0 5px #8e4e39;
 }
-
-input:focus {
-  border-color: #8e4e39;
-  outline: 2px solid var(--color-principal);
-  background-color: var(--color-principal);
-  box-shadow: 0 0 5px #8e4e39;
-}
