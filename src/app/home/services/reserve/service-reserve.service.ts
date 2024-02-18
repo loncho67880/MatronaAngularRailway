@@ -3,6 +3,8 @@ import {
   ReserveRepository,
   ReserveRepositoryInject,
 } from '../../../domain/respository/repository';
+import { BookingModel } from '../../../domain/models/models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class ReserveService {
     private reserveRepository: ReserveRepository
   ) {}
 
-  createReserve() {
-    this.reserveRepository.createReserve({}).subscribe(console.log);
+  createReserve(data: BookingModel, token: string): Observable<any> {
+    return this.reserveRepository.createReserve(data, token);
   }
 }
