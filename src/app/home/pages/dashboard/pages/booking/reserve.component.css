@@ -42,3 +42,31 @@ section {
   padding: 100px;
   color: var(--color-principal);
 }
+
+.text_error {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-secundario);
+  width: 100%;
+}
+.text_error span {
+  color: #937f74;
+}
+
+.container_confirm {
+  width: 100%;
+  background-color: var(--color-principal);
+  padding-top: 20px;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 50px;
+}
+
+.button_confirm {
+  border: none;
+  font-size: 20px;
+  background-color: transparent;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-secundario);
+  cursor: pointer;
+}

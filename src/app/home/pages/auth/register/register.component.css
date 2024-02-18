@@ -50,7 +50,7 @@ h3 {
 
 input {
   width: 100%;
-  color: #ffffff;
+  color: var(--color-secundario);
   border: 2px solid rgba(147, 127, 116, 0.3);
   background-color: rgba(147, 127, 116, 0.3);
   transition: 0.1s ease;

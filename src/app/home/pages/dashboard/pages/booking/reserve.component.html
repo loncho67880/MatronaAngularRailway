@@ -8,26 +8,50 @@
 <!-- * Backgrounds -->
 
 <!-- * Formulario de reserva -->
-<section
-  class="d-flex justify-content-center mt-5 pb-5 flex-column container_formulario"
->
-  <form>
-    <div class="row">
+<section class="d-flex justify-content-center mt-5 pb-5 flex-column">
+  <form [formGroup]="this.formReserve" (submit)="this.createReserve()">
+    <div class="row container_formulario">
       <!-- * Calendario de fecha de reserva -->
       <div class="d-flex flex-column col mb-3">
-        <label for="">Fecha de la reserva</label>
-        <hr />
-        <p-calendar
-          class="max-w-full"
-          [inline]="true"
-          [showWeek]="true"
-        ></p-calendar>
+        <div class="text-center">
+          <label for="">Fecha de la reserva</label>
+          <hr />
+          <p-calendar
+            class="max-w-full"
+            [inline]="true"
+            [showWeek]="true"
+            formControlName="date"
+          ></p-calendar>
+          <div>
+            @if (this.validParamForm("date")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+
+        <div class="d-flex flex-column mb-3 mt-3">
+          <label for="" class="form-label">Hora de la reserva</label>
+          <hr />
+          <input
+            type="time"
+            class="form-control"
+            min="7:00"
+            max="20:00"
+            formControlName="time"
+          />
+          <div>
+            @if (this.validParamForm("time")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
       </div>
       <!-- * Calendario de fecha de reserva -->
+
       <div class="col">
         <!-- * Nombre de la persona  -->
         <div class="d-flex flex-column mb-3">
-          <label for="name">Nombre</label>
+          <label for="name">Nombres</label>
           <hr />
           <div class="input-group">
             <span class="input-group-text icon"
@@ -36,7 +60,43 @@
                 style="color: var(--color-principal)"
               ></i
             ></span>
-            <input type="text" id="name" class="form-control" />
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("name")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * Nombre de la persona  -->
+
+        <!-- * Nombre de la persona  -->
+        <div class="d-flex flex-column mb-3">
+          <label for="name">Apellidos</label>
+          <hr />
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-signature"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="lastName"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("lastName")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
           </div>
         </div>
         <!-- * Nombre de la persona  -->
@@ -52,7 +112,17 @@
                 style="color: var(--color-principal)"
               ></i
             ></span>
-            <input type="text" id="document" class="form-control" />
+            <input
+              type="number"
+              id="document"
+              class="form-control"
+              formControlName="document"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("document")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
           </div>
         </div>
         <!-- * Documento de la persona -->
@@ -64,11 +134,21 @@
           <div class="input-group">
             <span class="input-group-text icon"
               ><i
-                class="fa-solid fa-check-double"
+                class="fa-solid fa-square-envelope"
                 style="color: var(--color-principal)"
               ></i
             ></span>
-            <input type="email" id="email" class="form-control" />
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("email")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
           </div>
         </div>
         <!-- * Email de la persona -->
@@ -84,12 +164,80 @@
                 style="color: var(--color-principal)"
               ></i
             ></span>
-            <input type="tel" id="phone" class="form-control" />
+            <input
+              type="tel"
+              id="phone"
+              class="form-control"
+              formControlName="phone"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("phone")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
           </div>
         </div>
         <!-- * Telefono de la persona -->
+
+        <!-- * Cantidad de personas -->
+        <div class="d-flex flex-column mb-3">
+          <label for="people">Cantidad de personas</label>
+          <hr />
+          <div class="input-group">
+            <span class="input-group-text icon"
+              ><i
+                class="fa-solid fa-people-roof"
+                style="color: var(--color-principal)"
+              ></i
+            ></span>
+            <input
+              type="number"
+              id="people"
+              class="form-control"
+              formControlName="peoples"
+              min="1"
+              max="20"
+            />
+          </div>
+          <div>
+            @if (this.validParamForm("peoples")) {
+            <p class="text_error"><span>*</span> Este campo es requerido</p>
+            }
+          </div>
+        </div>
+        <!-- * Cantidad de personas -->
       </div>
     </div>
+    <div class="container_confirm text-center">
+      <button
+        class="button_confirm"
+        type="submit"
+        [disabled]="!this.formReserve.valid"
+      >
+        Confirmar
+      </button>
+    </div>
   </form>
+
+  <!-- * Modal de registro de usuario  -->
+  <div class="flex justify-content-center">
+    <p-dialog
+      header="Registro de Usuario Exitoso"
+      [(visible)]="visible"
+      [modal]="true"
+      [draggable]="false"
+      [style]="{ width: '50vw' }"
+    >
+      <hr />
+      <p>
+        Reserva registrada correctamente, se ha enviado un correo a el email
+        ingresado.
+      </p>
+      <p>Gracias registrar tu reserva.</p>
+      <hr />
+      <button routerLink="/auth" class="register registro_button">login</button>
+    </p-dialog>
+  </div>
+  <!-- * Modal de registro de usuario  -->
 </section>
 <!-- * Formulario de reserva -->

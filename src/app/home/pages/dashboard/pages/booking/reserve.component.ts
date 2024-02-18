@@ -1,35 +1,113 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ReserveService } from '../../../../services';
 import { CalendarModule } from 'primeng/calendar';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BookingModel, ClientModel } from '../../../../../domain/models/models';
+import { AuthService } from '../../../../services/auth/service-auth.service';
+import { Observer } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-reserve',
   standalone: true,
-  imports: [CalendarModule, CommonModule, RouterModule],
+  imports: [
+    CalendarModule,
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    DialogModule,
+  ],
   templateUrl: './reserve.component.html',
   styleUrl: './reserve.component.css',
 })
 export default class ReserveComponent implements OnInit {
-  ngOnInit(): void {
-    this.createReserve();
-  }
+  ngOnInit(): void {}
   public fb = inject(FormBuilder);
   public reserveService = inject(ReserveService);
+  public authService = inject(AuthService);
 
   public formReserve: FormGroup = this.fb.group({
-    date: [],
-    hour: [],
-    peoples: [],
-    name: [],
-    document: [],
-    phone: [],
-    email: [],
+    date: [, [Validators.required]],
+    time: [, [Validators.required]],
+    peoples: [, [Validators.required, Validators.min(1), Validators.max(20)]],
+    name: [, [Validators.required]],
+    lastName: [, [Validators.required]],
+    document: [, [Validators.required]],
+    phone: [, [Validators.required]],
+    email: [, [Validators.email, Validators.required]],
   });
 
+  visible: boolean = false;
+
+  // * Observer de la respuesta de la suscripcion
+  public observer: Observer<any> = {
+    next: (value: any) => {
+      this.formReserve.reset();
+      this.showDialog();
+    },
+    error: (err: HttpErrorResponse) => {
+      // TODO: Ajustar para mostrar el modal
+      console.log('Error de peticion', err);
+    },
+    complete: function (): void {},
+  };
+  // * Observer de la respuesta de la suscripcion
+
   createReserve() {
-    this.reserveService.createReserve();
+    console.log(this.formReserve.value);
+    const client = new ClientModel(
+      this.formReserve.get('name')?.value,
+      this.formReserve.get('lastName')?.value,
+      this.formReserve.get('document')?.value.toString(),
+      this.formReserve.get('email')?.value
+    );
+    const data = new BookingModel(
+      this.dateFormate(),
+      this.formReserve.get('peoples')?.value,
+      client
+    );
+    console.log(data);
+    this.authService.getToken().subscribe(({ token }) => {
+      this.reserveService.createReserve(data, token).subscribe(this.observer);
+    });
+  }
+
+  dateFormate(): string {
+    const date = this.formReserve.get('date')?.value;
+    const time = this.formReserve.get('time')?.value;
+    var isoDate = date.toISOString().split('T')[0];
+    console.log(isoDate);
+    console.log(time);
+
+    // * Combinando fecha y hora para entregar el formato correcto
+    const dateFormate = new Date(isoDate + 'T' + time + ':00').toISOString();
+
+    return dateFormate;
+  }
+
+  validParamForm(param: string): boolean {
+    if (
+      !this.formReserve.get(param)?.valid &&
+      this.formReserve.get(param)?.touched
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  showDialog() {
+    if (this.visible) {
+      this.visible = false;
+    } else {
+      this.visible = true;
+    }
   }
 }
