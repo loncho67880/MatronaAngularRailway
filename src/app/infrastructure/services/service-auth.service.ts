@@ -3,6 +3,7 @@ import { AuthRepository } from '../../domain/respository/repository';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
+  Confirmed,
   Login,
   TokeRespose,
   User,
@@ -65,5 +66,15 @@ export class InfraAuthService implements AuthRepository {
       `${this.baseUrl}/validate`,
       this.payloadToken
     );
+  }
+
+  confirmUser(code: string, token: string): Observable<Confirmed> {
+    const headers = this.httpHeaders(token);
+    const data = {
+      code,
+    };
+    return this.http.post<Confirmed>('', data, {
+      headers,
+    });
   }
 }
