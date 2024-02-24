@@ -53,4 +53,8 @@ export class AuthService {
   getToken(): Observable<TokeRespose> {
     return this.authRepository.getToken();
   }
+
+  confirmUser(code: string, token: string) {
+    return this.authRepository.confirmUser(code, token);
+  }
 }

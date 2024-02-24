@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HeaderAuthComponent } from '../../../shared/components/header-auth/header-auth.component';
 import { AnimationOptions, LottieComponent } from 'ngx-lottie';
 import { AnimationItem } from 'lottie-web';
+import { AuthService } from '../../../services';
 
 @Component({
   selector: 'app-email-verification',
@@ -22,13 +23,22 @@ export default class EmailVerificationComponent implements OnInit {
   }
 
   public verified = signal<boolean>(false);
+  private authService = inject(AuthService);
 
   public routeActivate = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.routeActivate.params.subscribe((code) => {
+    this.routeActivate.params.subscribe(({ code }) => {
       // TODO: Hacer llamado a el back con codigo de verificacion
-      if (code) this.verified.set(true);
+      if (code) {
+        this.authService.getToken().subscribe(({ token }) => {
+          this.authService
+            .confirmUser(code, token)
+            .subscribe(({ confirmed }) => {
+              this.verified.set(confirmed);
+            });
+        });
+      }
       if (!this.verified()) {
         this.updateAnimation();
       }
