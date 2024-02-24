@@ -1,1 +1,63 @@
-<p>bookings works!</p>
+<section class="header">
+  <!-- * Logo restaurante -->
+  <div class="logo">
+    <img src="../../../../../../assets/image/MatronaLogoFondo.png" alt="logo" />
+  </div>
+  <!-- * Logo restaurante -->
+</section>
+
+<!-- * Tabla de reservas  -->
+<section class="container mt-5">
+  <div class="card">
+    <p-table [value]="bookings" [tableStyle]="{ 'min-width': '60rem' }">
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Reservas
+          <!-- <p-button icon="pi pi-refresh"></p-button> -->
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Nombre de Persona</th>
+          <th class="text-center">Cantidad</th>
+          <th class="text-center">Fecha y Hora</th>
+          <th class="text-center">Estado</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-booking>
+        <tr>
+          @if (booking.clientEntityRead != null) {
+          <td class="text-center">{{ booking.code }}</td>
+          <td class="width text-center">
+            {{ booking.clientEntityRead.name.trim() }}
+            {{ booking.clientEntityRead.lastname.trim() }}
+          </td>
+          <td class="text-center">{{ booking.amount }}</td>
+          <td class="text-center">
+            {{ booking.dateBooking | date : "short" }}
+          </td>
+          <td class="text-center">
+            @if (!booking.canceled) {
+            <p class="procesada">
+              {{ this.getStatus(booking.canceled) }}
+            </p>
+            }@else {
+            <p class="cancelada">
+              {{ this.getStatus(booking.canceled) }}
+            </p>
+            }
+          </td>
+
+          }
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          Total de reservas {{ this.bookings.length }}.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</section>
+<!-- * Tabla de reservas  -->

@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
   .Backgrounds img {
     height: 400px;
   }
@@ -41,6 +41,24 @@ section {
   margin: auto;
   padding: 100px;
   color: var(--color-principal);
+}
+
+@media screen and (max-width: 800px) and (min-width: 620px) {
+  .container_formulario {
+    background-color: #fcfcfd;
+    color: var(--color-principal);
+    padding: 0;
+    padding-top: 20px;
+  }
+}
+
+@media screen and (max-width: 497px) {
+  .container_formulario {
+    background-color: #fcfcfd;
+    color: var(--color-principal);
+    padding: 0;
+    padding-top: 20px;
+  }
 }
 
 .text_error {
