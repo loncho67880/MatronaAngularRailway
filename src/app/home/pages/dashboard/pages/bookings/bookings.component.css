@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  width: 260px;
+  height: 150px;
+}
+
+.nav a {
+  color: var(--color-secundario);
+  font-size: 20px;
+  outline: none;
+  text-decoration: none;
+}
+
+.width {
+  width: 30%;
+}
+
+tr {
+  background: var(--color-secundario);
+}
+th {
+  background: var(--color-principal);
+  border: none;
+}
+
+.cancelada {
+  font-size: 15px;
+  color: white;
+  background-color: #ef4444;
+  border-radius: 20px;
+  margin: 0;
+}
+
+.procesada {
+  font-size: 15px;
+  color: white;
+  background-color: #35c55d;
+  border-radius: 20px;
+  margin: 0;
+}

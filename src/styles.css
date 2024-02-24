@@ -96,3 +96,19 @@ html {
   border: var(--color-secundario);
   color: var(--color-secundario) !important;
 }
+
+.p-datatable .p-datatable-header {
+  background: var(--color-secundario) !important;
+}
+.p-datatable .p-datatable-footer {
+  background: var(--color-secundario) !important;
+}
+.p-datatable .p-component {
+  background: var(--color-secundario) !important;
+}
+.p-datatable .p-datatable-wrapper {
+  background: var(--color-secundario) !important;
+}
+.card {
+  background: var(--color-secundario) !important;
+}

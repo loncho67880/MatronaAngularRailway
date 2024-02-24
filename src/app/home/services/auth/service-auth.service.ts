@@ -3,7 +3,7 @@ import {
   AuthRepository,
   AuthRepositoryInject,
 } from '../../../domain/respository/repository';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, delay, map, tap } from 'rxjs';
 import {
   Login,
   TokeRespose,
@@ -35,8 +35,12 @@ export class AuthService {
             logged: resp.logged,
             user: resp.user,
           });
+          this.getToken().subscribe(({ token }) => {
+            localStorage.setItem('token', token);
+          });
         }
       }),
+      delay(2000),
       map((login) => login.user!)
     );
   }
