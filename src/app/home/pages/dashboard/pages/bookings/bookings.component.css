@@ -43,3 +43,16 @@ th {
   border-radius: 20px;
   margin: 0;
 }
+
+.clear {
+  background: var(--color-principal);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--color-secundario);
+}
+
+.clear:hover {
+  box-shadow: 1px 1px 1px white;
+}

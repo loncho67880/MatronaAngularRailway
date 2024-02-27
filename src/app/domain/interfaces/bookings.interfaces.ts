@@ -25,3 +25,15 @@ export interface ID {
   increment: number;
   creationTime: Date;
 }
+
+export interface Hour {
+  id: ID;
+  createdAt: Date;
+  hour: number;
+  minute: number;
+}
+
+export interface ID {
+  timestamp: number;
+  creationTime: Date;
+}

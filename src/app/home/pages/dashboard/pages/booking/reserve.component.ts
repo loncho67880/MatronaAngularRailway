@@ -11,9 +11,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BookingModel, ClientModel } from '../../../../../domain/models/models';
 import { AuthService } from '../../../../services/auth/service-auth.service';
-import { Observer } from 'rxjs';
+import { Observer, switchMap, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DialogModule } from 'primeng/dialog';
+import { Hour } from '../../../../../domain/interfaces/bookings.interfaces';
+import moment from 'moment-timezone';
+// import { format } from 'date-fns-tz';
 
 @Component({
   selector: 'app-reserve',
@@ -29,7 +32,6 @@ import { DialogModule } from 'primeng/dialog';
   styleUrl: './reserve.component.css',
 })
 export default class ReserveComponent implements OnInit {
-  ngOnInit(): void {}
   public fb = inject(FormBuilder);
   public reserveService = inject(ReserveService);
   public authService = inject(AuthService);
@@ -46,6 +48,22 @@ export default class ReserveComponent implements OnInit {
   });
 
   visible: boolean = false;
+  public hours!: Hour[];
+  minDate: Date = new Date();
+
+  ngOnInit(): void {
+    this.authService
+      .getToken()
+      .pipe(
+        switchMap(({ token }) => {
+          return this.reserveService.getHour(token);
+        }),
+        tap((resp) => {
+          this.hours = resp;
+        })
+      )
+      .subscribe();
+  }
 
   // * Observer de la respuesta de la suscripcion
   public observer: Observer<any> = {
@@ -67,7 +85,8 @@ export default class ReserveComponent implements OnInit {
       this.formReserve.get('name')?.value,
       this.formReserve.get('lastName')?.value,
       this.formReserve.get('document')?.value.toString(),
-      this.formReserve.get('email')?.value
+      this.formReserve.get('email')?.value,
+      this.formReserve.get('phone')?.value
     );
     const data = new BookingModel(
       this.dateFormate(),
@@ -88,9 +107,13 @@ export default class ReserveComponent implements OnInit {
     console.log(time);
 
     // * Combinando fecha y hora para entregar el formato correcto
-    const dateFormate = new Date(isoDate + 'T' + time + ':00').toISOString();
+    const dateFormat = `${isoDate}T${time}:00.936Z`;
 
-    return dateFormate;
+    const fechaMoment = moment(dateFormat);
+    const fecha = fechaMoment.tz('America/Bogota');
+    console.log(dateFormat);
+
+    return fecha.toISOString();
   }
 
   validParamForm(param: string): boolean {

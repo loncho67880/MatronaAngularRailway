@@ -18,14 +18,21 @@ input:focus {
 
 input {
   width: 100%;
-  color: #ffffff;
+  color: black;
   border: 2px solid rgba(147, 127, 116, 0.3);
-  background-color: rgba(147, 127, 116, 0.3);
+  background-color: white;
+  transition: 0.1s ease;
+}
+select {
+  width: 100%;
+  color: black;
+  border: 2px solid rgba(147, 127, 116, 0.3);
+  background-color: white;
   transition: 0.1s ease;
 }
 
 .icon {
-  background-color: rgba(225, 225, 225, 0.5);
+  background-color: var(--color-principal);
   border: none;
   width: 40px;
   display: flex;

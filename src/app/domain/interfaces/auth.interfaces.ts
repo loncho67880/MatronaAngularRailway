@@ -1,5 +1,5 @@
 export interface User {
-  id?: number;
+  id?: number | ID;
   name: string;
   lastname: string;
   userName: string;
@@ -9,6 +9,11 @@ export interface User {
   confirmationCode?: any;
   expireCode?: any;
   validated?: any;
+}
+
+export interface ID {
+  timestamp: number;
+  creationTime: Date;
 }
 
 export interface TokeRespose {
@@ -23,10 +28,10 @@ export interface Login {
 
 export interface Confirmed {
   confirmed: boolean;
-  user: User;
+  user: UserConfimed;
 }
 
-export interface User {
+export interface UserConfimed {
   name: string;
   lastname: string;
   userName: string;

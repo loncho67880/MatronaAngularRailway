@@ -73,8 +73,20 @@ export class InfraAuthService implements AuthRepository {
     const data = {
       code,
     };
-    return this.http.post<Confirmed>('', data, {
-      headers,
-    });
+    return this.http.post<Confirmed>(
+      `${this.baseUrl}/api/User/ConfirmUser`,
+      data,
+      {
+        headers,
+      }
+    );
   }
+
+  // validatedUser(email: string, token: string): Observable<User> {
+  //   const data = {
+  //     email
+  //   }
+
+  //  return this.http.<User>('', data)
+  // }
 }

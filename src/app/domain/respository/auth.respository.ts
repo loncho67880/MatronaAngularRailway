@@ -17,4 +17,5 @@ export interface AuthRepository {
   login(data: UserModel): Observable<Login>;
   getToken(): Observable<TokeRespose>;
   confirmUser(code: string, token: string): Observable<Confirmed>;
+  // validatedUser(email: string, token: string): Observable<User>;
 }

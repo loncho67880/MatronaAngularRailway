@@ -10,13 +10,12 @@
 }
 
 h3 {
-  z-index: 999999;
   color: var(--color-secundario);
 }
 
 .login-container_info {
   top: 400px;
-  z-index: 999999;
+
   position: absolute;
 }
 
@@ -30,7 +29,7 @@ h3 {
   border-radius: 8px;
   padding: 8px;
   font-size: 20px;
-  z-index: 999999;
+
   background-color: var(--color-secundario);
 }
 .login_button:hover {
@@ -52,7 +51,6 @@ input {
   border: 2px solid rgba(147, 127, 116, 0.3);
   background-color: rgba(147, 127, 116, 0.3);
   transition: 0.1s ease;
-  z-index: 111111;
 }
 
 .text_error {
