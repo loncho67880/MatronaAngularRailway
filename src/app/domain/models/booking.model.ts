@@ -15,3 +15,7 @@ export class ClientModel {
     public phone: string
   ) {}
 }
+
+export class BookingCanceled {
+  constructor(public code: string, public canceled: boolean) {}
+}
