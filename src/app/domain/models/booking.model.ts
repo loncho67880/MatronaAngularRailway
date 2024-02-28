@@ -11,6 +11,7 @@ export class ClientModel {
     public name: string,
     public lastName: string,
     public identification: string,
-    public email: string
+    public email: string,
+    public phone: string
   ) {}
 }

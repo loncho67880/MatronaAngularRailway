@@ -101,4 +101,25 @@
   </div>
 
   <!-- * Formulario login -->
+
+  <!-- * Modal de registro de usuario  -->
+  <div class="flex justify-content-center">
+    <p-dialog
+      header="Intento de ingreso de usuario no verificado"
+      [(visible)]="visible"
+      [modal]="true"
+      [draggable]="false"
+      [style]="{ width: '50vw' }"
+    >
+      <hr />
+      <p>
+        Usuario con estas credenciales no ha sido verificado por el
+        administrador, se ha enviado un correo para gestion del administrador
+        para validar tu registro. comunicate con el para este proceso.
+      </p>
+      <p>Gracias</p>
+      <hr />
+    </p-dialog>
+  </div>
+  <!-- * Modal de registro de usuario  -->
 </section>

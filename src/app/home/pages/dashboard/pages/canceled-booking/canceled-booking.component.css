@@ -1,0 +1,47 @@
+.Backgrounds img {
+  width: 100%;
+  margin: 0;
+}
+
+@media screen and (min-width: 700px) {
+  .Backgrounds img {
+    height: 400px;
+  }
+}
+
+input {
+  width: 100%;
+  color: #ffffff;
+  border: 2px solid rgba(147, 127, 116, 0.3);
+  background-color: rgba(147, 127, 116, 0.3);
+  transition: 0.1s ease;
+}
+
+input:focus {
+  border-color: #8e4e39;
+  outline: 2px solid var(--color-principal);
+  background-color: var(--color-principal);
+  box-shadow: 0 0 5px #8e4e39;
+}
+
+.icon {
+  background-color: rgba(225, 225, 225, 0.5);
+  border: none;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.cancelar_button {
+  border: none;
+  color: var(--color-principal);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 20px;
+  background-color: var(--color-secundario);
+  cursor: pointer;
+}
+
+.cancelar_button:hover {
+  box-shadow: 1px 1px 4px white;
+}

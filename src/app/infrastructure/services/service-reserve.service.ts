@@ -3,7 +3,7 @@ import { ReserveRepository } from '../../domain/respository/reserve.repository';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { Booking } from '../../domain/interfaces/bookings.interfaces';
+import { Booking, Hour } from '../../domain/interfaces/bookings.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,16 @@ export class InfraReserveService implements ReserveRepository {
   }
 
   constructor() {}
+
+  getHour(token: string): Observable<Hour[]> {
+    const headers = this.httpHeaders(token);
+    return this.http.get<Hour[]>(
+      `${this.baseUrl}/api/Booking/GetAvailabilitysRead`,
+      {
+        headers,
+      }
+    );
+  }
 
   getBookings(): Observable<Booking[]> {
     const token = localStorage.getItem('token') || '';

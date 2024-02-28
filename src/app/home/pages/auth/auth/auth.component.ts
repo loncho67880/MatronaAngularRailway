@@ -13,6 +13,7 @@ import { UserModel } from '../../../../domain/models/models';
 import { Observer } from 'rxjs';
 import { User } from '../../../../domain/interfaces/auth.interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-auth',
@@ -22,6 +23,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     ReactiveFormsModule,
     RouterModule,
     HeaderAuthComponent,
+    DialogModule,
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css',
@@ -32,6 +34,8 @@ export default class AuthComponent {
     password: ['', [Validators.required]],
   });
 
+  visible: boolean = false;
+
   public authService = inject(AuthService);
   public router = inject(Router);
 
@@ -39,7 +43,11 @@ export default class AuthComponent {
   public observer: Observer<User> = {
     next: (value: User) => {
       console.log(value);
-      this.router.navigateByUrl('/dashboard/bookings');
+      if (value.validated) {
+        this.router.navigateByUrl('/dashboard/bookings');
+      } else {
+        this.visible = true;
+      }
     },
     error: (err: HttpErrorResponse) => {
       // TODO: Ajustar para mostrar el modal

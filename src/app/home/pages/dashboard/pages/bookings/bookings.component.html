@@ -9,19 +9,52 @@
 <!-- * Tabla de reservas  -->
 <section class="container mt-5">
   <div class="card">
-    <p-table [value]="bookings" [tableStyle]="{ 'min-width': '60rem' }">
+    <p-table
+      #dt1
+      [value]="bookings"
+      [tableStyle]="{ 'min-width': '60rem' }"
+      [globalFilterFields]="['clientEntityRead.name', 'code', 'dateBooking']"
+    >
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
           Reservas
-          <!-- <p-button icon="pi pi-refresh"></p-button> -->
+
+          <button class="m-3 clear" (click)="clear(dt1)">Limpiar Filtro</button>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th class="text-center">ID</th>
-          <th class="text-center">Nombre de Persona</th>
+          <th class="text-center">
+            <div class="flex align-items-center">
+              Codigo
+              <p-columnFilter
+                type="text"
+                field="code"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th class="text-center">
+            <div class="flex align-items-center">
+              Nombre de Persona
+              <p-columnFilter
+                type="text"
+                field="clientEntityRead.name"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
           <th class="text-center">Cantidad</th>
-          <th class="text-center">Fecha y Hora</th>
+          <th class="text-center">
+            <div class="flex align-items-center">
+              Fecha y Hora
+              <p-columnFilter
+                type="text"
+                field="dateBooking"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
           <th class="text-center">Estado</th>
         </tr>
       </ng-template>
@@ -35,7 +68,7 @@
           </td>
           <td class="text-center">{{ booking.amount }}</td>
           <td class="text-center">
-            {{ booking.dateBooking | date : "short" }}
+            {{ booking.dateBooking | date : "yyyy-MM-dd hh:mm" : "UTC" }}
           </td>
           <td class="text-center">
             @if (!booking.canceled) {

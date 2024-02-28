@@ -20,6 +20,14 @@ export const routes: Routes = [
           import('./home/pages/dashboard/pages/booking/reserve.component'),
       },
       {
+        path: 'canceled',
+        title: 'Canceled',
+        loadComponent: () =>
+          import(
+            './home/pages/dashboard/pages/canceled-booking/canceled-booking.component'
+          ),
+      },
+      {
         path: '**',
         redirectTo: 'booking',
         pathMatch: 'full',

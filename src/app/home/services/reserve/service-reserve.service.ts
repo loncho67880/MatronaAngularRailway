@@ -5,7 +5,7 @@ import {
 } from '../../../domain/respository/repository';
 import { BookingModel } from '../../../domain/models/models';
 import { Observable } from 'rxjs';
-import { Booking } from '../../../domain/interfaces/bookings.interfaces';
+import { Booking, Hour } from '../../../domain/interfaces/bookings.interfaces';
 import { AuthService } from '../auth/service-auth.service';
 
 @Injectable({
@@ -29,5 +29,9 @@ export class ReserveService {
 
   getBookins(): Observable<Booking[]> {
     return this.reserveRepository.getBookings();
+  }
+
+  getHour(token: string): Observable<Hour[]> {
+    return this.reserveRepository.getHour(token);
   }
 }
