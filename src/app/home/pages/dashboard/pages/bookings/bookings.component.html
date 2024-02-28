@@ -68,7 +68,7 @@
           </td>
           <td class="text-center">{{ booking.amount }}</td>
           <td class="text-center">
-            {{ booking.dateBooking | date : "YYYY-MM-dd HH:mm" }}
+            {{ booking.dateBooking | date : "yyyy-MM-dd hh:mm" : "UTC" }}
           </td>
           <td class="text-center">
             @if (!booking.canceled) {

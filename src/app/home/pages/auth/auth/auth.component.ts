@@ -43,7 +43,6 @@ export default class AuthComponent {
   public observer: Observer<User> = {
     next: (value: User) => {
       console.log(value);
-
       if (value.validated) {
         this.router.navigateByUrl('/dashboard/bookings');
       } else {
