@@ -12,8 +12,11 @@
     <p-table
       #dt1
       [value]="bookings"
+      [paginator]="true"
+      [rows]="5"
       [tableStyle]="{ 'min-width': '60rem' }"
       [globalFilterFields]="['clientEntityRead.name', 'code', 'dateBooking']"
+      [rowsPerPageOptions]="[5, 10, 20]"
     >
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
@@ -89,6 +92,20 @@
         <div class="flex align-items-center justify-content-between">
           Total de reservas {{ this.bookings.length }}.
         </div>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <p-button
+          type="button"
+          icon="pi pi-plus"
+          styleClass="p-button-text"
+        ></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+        <p-button
+          type="button"
+          icon="pi pi-cloud"
+          styleClass="p-button-text"
+        ></p-button>
       </ng-template>
     </p-table>
   </div>

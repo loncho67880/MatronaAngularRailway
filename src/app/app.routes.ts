@@ -20,7 +20,7 @@ export const routes: Routes = [
           import('./home/pages/dashboard/pages/booking/reserve.component'),
       },
       {
-        path: 'canceled',
+        path: 'canceled/:code',
         title: 'Canceled',
         loadComponent: () =>
           import(

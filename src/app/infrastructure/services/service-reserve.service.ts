@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { Booking, Hour } from '../../domain/interfaces/bookings.interfaces';
+import { BookingCanceled } from '../../domain/models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,17 @@ export class InfraReserveService implements ReserveRepository {
   }
 
   constructor() {}
+
+  canceledBooking(data: BookingCanceled, token: string): Observable<any> {
+    const headers = this.httpHeaders(token);
+    return this.http.put<any>(
+      `${this.baseUrl}/api/Booking/CancelBooking`,
+      data,
+      {
+        headers,
+      }
+    );
+  }
 
   getHour(token: string): Observable<Hour[]> {
     const headers = this.httpHeaders(token);

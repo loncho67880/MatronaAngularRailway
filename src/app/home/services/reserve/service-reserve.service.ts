@@ -3,8 +3,8 @@ import {
   ReserveRepository,
   ReserveRepositoryInject,
 } from '../../../domain/respository/repository';
-import { BookingModel } from '../../../domain/models/models';
-import { Observable } from 'rxjs';
+import { BookingCanceled, BookingModel } from '../../../domain/models/models';
+import { Observable, retry } from 'rxjs';
 import { Booking, Hour } from '../../../domain/interfaces/bookings.interfaces';
 import { AuthService } from '../auth/service-auth.service';
 
@@ -33,5 +33,9 @@ export class ReserveService {
 
   getHour(token: string): Observable<Hour[]> {
     return this.reserveRepository.getHour(token);
+  }
+
+  canceledBooking(data: BookingCanceled, token: string): Observable<any> {
+    return this.reserveRepository.canceledBooking(data, token);
   }
 }
