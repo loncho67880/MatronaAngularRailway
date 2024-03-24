@@ -56,6 +56,7 @@ export default class ReserveComponent implements OnInit {
   });
 
   visible: boolean = false;
+  visibleTermsAndCondition: boolean = false;
   public hours!: Hour[];
   minDate: Date = new Date();
 
@@ -145,6 +146,14 @@ export default class ReserveComponent implements OnInit {
       this.visible = false;
     } else {
       this.visible = true;
+    }
+  }
+
+  showDialogTermsAndCondicition() {
+    if (this.visibleTermsAndCondition == false) {
+      this.visibleTermsAndCondition = true;
+    } else {
+      this.visibleTermsAndCondition = false;
     }
   }
 

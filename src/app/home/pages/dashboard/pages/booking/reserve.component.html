@@ -235,9 +235,11 @@
               formControlName="terminos"
               id="flexCheckDefault"
             />
-            <label class="form-check-label" for="terminos"
-              >Se autoriza el uso de la informacion indicada en la
-              reserva</label
+            <a
+              class="form-check-label"
+              (click)="showDialogTermsAndCondicition()"
+              >Se autoriza el uso de la informacion persona del cliente
+              ingresada en la reserva reserva.</a
             >
           </div>
         </div>
@@ -287,8 +289,9 @@
     </div>
   </form>
 
-  @if (this.formReserve.get('terminos')?.value) {
-  <app-terms-conditions></app-terms-conditions>}
+  @if (this.visibleTermsAndCondition) {
+  <app-terms-conditions></app-terms-conditions>
+  }
 
   <!-- * Modal de registro de usuario  -->
   <div class="flex justify-content-center">
