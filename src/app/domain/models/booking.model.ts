@@ -12,7 +12,8 @@ export class ClientModel {
     public lastName: string,
     public identification: string,
     public email: string,
-    public phone: string
+    public phone: string,
+    public urlImageSite: string
   ) {}
 }
 

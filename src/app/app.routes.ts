@@ -11,7 +11,7 @@ export const routes: Routes = [
         title: 'Bookings',
         loadComponent: () =>
           import('./home/pages/dashboard/pages/bookings/bookings.component'),
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
       },
       {
         path: 'booking',
@@ -55,7 +55,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/auth',
+    redirectTo: '/dashboard',
     pathMatch: 'full',
   },
 ];

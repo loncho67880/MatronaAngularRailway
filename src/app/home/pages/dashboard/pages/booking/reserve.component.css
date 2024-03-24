@@ -95,3 +95,21 @@ section {
   color: var(--color-secundario);
   cursor: pointer;
 }
+
+.preview {
+  height: 100px;
+  width: 100px;
+}
+
+.image-button {
+  border: none;
+  background-color: var(--color-principal);
+  color: var(--color-secundario);
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.image-button:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 4px white;
+}

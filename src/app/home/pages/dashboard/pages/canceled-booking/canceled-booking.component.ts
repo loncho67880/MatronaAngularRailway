@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService, ReserveService } from '../../../../services';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Observer, catchError, switchMap, throwError } from 'rxjs';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Observer, catchError, map, switchMap, throwError } from 'rxjs';
 import { BookingCanceled } from '../../../../../domain/models/booking.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -17,12 +17,14 @@ export default class CanceledBookingComponent implements OnInit {
   private authService = inject(AuthService);
   private reserveService = inject(ReserveService);
   private router = inject(ActivatedRoute);
+  private route = inject(Router);
   visible: boolean = false;
+  code!: string;
 
   // * Observer de la respuesta de la suscripcion
   public observer: Observer<any> = {
     next: (value: any) => {
-      this.showDialog();
+      this.backBooking();
     },
     error: (err: HttpErrorResponse) => {
       // TODO: Ajustar para mostrar el modal
@@ -35,27 +37,30 @@ export default class CanceledBookingComponent implements OnInit {
   ngOnInit(): void {
     this.router.params
       .pipe(
-        switchMap(({ code }) => {
-          return this.authService.getToken().pipe(
-            switchMap(({ token }) => {
-              const data = new BookingCanceled(code, true);
-              return this.reserveService.canceledBooking(data, token);
-            })
-          );
+        map(({ code }) => {
+          this.code = code;
         }),
         catchError((error) => {
           console.error('Error:', error);
           return throwError(() => Error(error));
         })
       )
+      .subscribe();
+  }
+
+  canceled() {
+    this.authService
+      .getToken()
+      .pipe(
+        switchMap(({ token }) => {
+          const data = new BookingCanceled(this.code, true);
+          return this.reserveService.canceledBooking(data, token);
+        })
+      )
       .subscribe(this.observer);
   }
 
-  showDialog() {
-    if (this.visible) {
-      this.visible = false;
-    } else {
-      this.visible = true;
-    }
+  backBooking() {
+    this.route.navigateByUrl('./booking');
   }
 }
