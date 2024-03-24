@@ -16,6 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { DialogModule } from 'primeng/dialog';
 import { Hour } from '../../../../../domain/interfaces/bookings.interfaces';
 import moment from 'moment-timezone';
+import { GalleriaModule } from 'primeng/galleria';
 // import { format } from 'date-fns-tz';
 
 @Component({
@@ -27,6 +28,7 @@ import moment from 'moment-timezone';
     RouterModule,
     ReactiveFormsModule,
     DialogModule,
+    GalleriaModule,
   ],
   templateUrl: './reserve.component.html',
   styleUrl: './reserve.component.css',
@@ -35,6 +37,9 @@ export default class ReserveComponent implements OnInit {
   public fb = inject(FormBuilder);
   public reserveService = inject(ReserveService);
   public authService = inject(AuthService);
+  public images: any[] = [];
+
+  responsiveOptions: any[] | undefined;
 
   public formReserve: FormGroup = this.fb.group({
     date: [, [Validators.required]],
@@ -45,6 +50,7 @@ export default class ReserveComponent implements OnInit {
     document: [, [Validators.required]],
     phone: [, [Validators.required]],
     email: [, [Validators.email, Validators.required]],
+    image: [, [Validators.required]],
   });
 
   visible: boolean = false;
@@ -63,6 +69,8 @@ export default class ReserveComponent implements OnInit {
         })
       )
       .subscribe();
+
+    this.images = this.reserveService.imageBooking;
   }
 
   // * Observer de la respuesta de la suscripcion
@@ -86,7 +94,8 @@ export default class ReserveComponent implements OnInit {
       this.formReserve.get('lastName')?.value,
       this.formReserve.get('document')?.value.toString(),
       this.formReserve.get('email')?.value,
-      this.formReserve.get('phone')?.value
+      this.formReserve.get('phone')?.value,
+      this.formReserve.get('image')?.value
     );
     const data = new BookingModel(
       this.dateFormate(),
@@ -132,5 +141,13 @@ export default class ReserveComponent implements OnInit {
     } else {
       this.visible = true;
     }
+  }
+
+  selectImage(image: string) {
+    console.log(image);
+    if (image) {
+      this.formReserve.get('image')?.setValue(image);
+    }
+    console.log(this.formReserve.value);
   }
 }
