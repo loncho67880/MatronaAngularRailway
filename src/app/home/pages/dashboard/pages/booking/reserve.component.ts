@@ -17,7 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { Hour } from '../../../../../domain/interfaces/bookings.interfaces';
 import moment from 'moment-timezone';
 import { GalleriaModule } from 'primeng/galleria';
-// import { format } from 'date-fns-tz';
+import { TermsConditionsComponent } from '../../../../shared/components/terms-conditions/terms-conditions.component';
 
 @Component({
   selector: 'app-reserve',
@@ -29,6 +29,7 @@ import { GalleriaModule } from 'primeng/galleria';
     ReactiveFormsModule,
     DialogModule,
     GalleriaModule,
+    TermsConditionsComponent,
   ],
   templateUrl: './reserve.component.html',
   styleUrl: './reserve.component.css',
@@ -51,6 +52,7 @@ export default class ReserveComponent implements OnInit {
     phone: [, [Validators.required]],
     email: [, [Validators.email, Validators.required]],
     image: [, [Validators.required]],
+    terminos: [false, [Validators.required]],
   });
 
   visible: boolean = false;
@@ -88,6 +90,9 @@ export default class ReserveComponent implements OnInit {
   // * Observer de la respuesta de la suscripcion
 
   createReserve() {
+    if (this.formReserve.get('terminos')?.value == false) {
+      return;
+    }
     console.log(this.formReserve.value);
     const client = new ClientModel(
       this.formReserve.get('name')?.value,

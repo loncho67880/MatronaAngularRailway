@@ -98,8 +98,14 @@ section {
 
 .preview {
   height: 100px;
-  width: 400px !important;
+  width: 100%;
   object-fit: cover;
+}
+
+.terminos {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
 }
 
 .image-button {

@@ -227,6 +227,20 @@
           </div>
         </div>
         <!-- * Cantidad de personas -->
+        <div class="mt-5">
+          <div class="form-check">
+            <input
+              class="form-check-input terminos"
+              type="checkbox"
+              formControlName="terminos"
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="terminos"
+              >Se autoriza el uso de la informacion indicada en la
+              reserva</label
+            >
+          </div>
+        </div>
       </div>
       <!-- TODO Mostrar galeria de lugares -->
       <div class="row mb-5">
@@ -236,7 +250,7 @@
             <ng-template pTemplate="item" let-item>
               <img
                 [src]="item.itemImageSrc"
-                style="width: 100%; height: 600px"
+                style="width: 100%; height: 600px; object-fit: contain"
               />
             </ng-template>
             <ng-template pTemplate="thumbnail" let-item>
@@ -272,6 +286,9 @@
       </button>
     </div>
   </form>
+
+  @if (this.formReserve.get('terminos')?.value) {
+  <app-terms-conditions></app-terms-conditions>}
 
   <!-- * Modal de registro de usuario  -->
   <div class="flex justify-content-center">
